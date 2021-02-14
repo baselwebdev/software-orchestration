@@ -1,14 +1,8 @@
 import { mkdirpSync, moveSync, readdirSync } from 'fs-extra';
 import { projectDirectory } from './fileManager';
-import { replaceAll } from './strModification';
 
 export function backUpLogs(): void {
-    const date = new Date();
-    const currentTime =
-        replaceAll(date.toLocaleDateString('en-UK'), '/', '.') +
-        '-' +
-        replaceAll(date.toLocaleTimeString('en-UK', { hour12: true }), ' ', '-');
-    const logDirectory = projectDirectory + 'logs/' + currentTime + '/';
+    const logDirectory = projectDirectory + 'logs/' + getFormattedTimeStamp() + '/';
     const files = readdirSync(projectDirectory + 'logs/');
 
     mkdirpSync(logDirectory);
@@ -25,4 +19,24 @@ export function backUpLogs(): void {
     } catch (ErrorMessage) {
         throw Error(`Failed moving logs: ${ErrorMessage as string}`);
     }
+}
+
+function getFormattedTimeStamp(): string {
+    const date = new Date();
+    const year = date.getFullYear().toString();
+    const month = fullSizeDateNumber(date.getMonth() + 1);
+    const day = fullSizeDateNumber(date.getDate());
+    const hours = fullSizeDateNumber(date.getHours());
+    const minutes = fullSizeDateNumber(date.getMinutes());
+    const seconds = fullSizeDateNumber(date.getSeconds());
+
+    return `${year}.${month}.${day}-${hours}:${minutes}:${seconds}`;
+}
+
+function fullSizeDateNumber(date: number): string {
+    if (date < 10) {
+        return `0${date}`;
+    }
+
+    return date.toString();
 }
