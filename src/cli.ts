@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import SoftwareOrchestration from './softwareOrchestration';
 import Yargs from 'yargs';
 
