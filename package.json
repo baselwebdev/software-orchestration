@@ -1,9 +1,16 @@
 {
   "name": "software-orchestration",
   "version": "1.0.2",
+  "main": "dist/softwareOrchestration.js",
+  "bin": {
+    "repo-retriever": "dist/cli.js"
+  },
+  "types": "dist/softwareOrchestration.d.ts",
   "scripts": {
-    "build": "npx tsc -p tsconfig.json",
-    "lint": "npx eslint --fix \\\"src/**\\\""
+    "build": "npx tsc",
+    "lint": "npx eslint --fix \\\"src/**\\\"",
+    "prepublish": "npm run build",
+    "test": "echo \"No test specified\""
   },
   "dependencies": {
     "@types/execa": "^2.0.0",
