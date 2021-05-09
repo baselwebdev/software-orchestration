@@ -3,13 +3,13 @@
   "version": "1.1.0",
   "main": "dist/softwareOrchestration.js",
   "bin": {
-    "repo-retriever": "dist/cli.js"
+    "software-orchestration": "dist/cli.js"
   },
   "types": "dist/softwareOrchestration.d.ts",
   "scripts": {
     "build": "npx tsc",
-    "lint": "npx eslint --fix \\\"src/**\\\"",
-    "prepublish": "npm run build",
+    "lint": "npx eslint --fix \"src/**\"",
+    "prepare": "npm run build",
     "test": "echo \"No test specified\""
   },
   "dependencies": {
